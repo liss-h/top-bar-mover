@@ -1,0 +1,10 @@
+{
+	"extension-id": "top-bar-mover",
+	"uuid": "top-bar-mover@Clueliss.github.com", 
+	"name": "Top Bar Mover", 
+ 	"gettext-domain": "gnome-shell-extensions",
+	"description": "Moves the top panel to the secondary monitor if the primary is in fullscreen", 
+	"url": "https://github.com/Clueliss/top-bar-mover", 
+	"version": 3,
+	"shell-version": ["40", "41"]
+}
