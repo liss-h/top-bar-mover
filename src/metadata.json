@@ -6,5 +6,5 @@
 	"description": "Moves the top panel to the secondary monitor if the primary is in fullscreen", 
 	"url": "https://github.com/Clueliss/top-bar-mover", 
 	"version": 3,
-	"shell-version": ["40", "41", "42"]
+	"shell-version": ["40", "41", "42", "43"]
 }
