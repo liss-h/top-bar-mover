@@ -1,34 +1,28 @@
-'use strict';
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
-const LM = imports.ui.main.layoutManager;
+export default class TopBarMover extends Extension {
+    enable() {
+        if (global.display.get_n_monitors() != 2) {
+		    return;
+	    }
 
-function move_panel(monitor) {
-	LM.panelBox.x = monitor.x;
-	LM.panelBox.y = monitor.y;
-	LM.panelBox.width = monitor.width;
-	LM.panelBox.visible = true;
-}
+	    let s = 1 - global.display.get_primary_monitor();
+	    let sg = global.display.get_monitor_geometry(s);
 
-function primary_monitor_index() {
-	return global.display.get_primary_monitor();
-}
+	    Main.layoutManager.panelBox.x = sg.x;
+	    Main.layoutManager.panelBox.y = sg.y;
+    }
 
-function secondary_monitor_index() {
-	return primary_monitor_index() == 0 ? 1 : 0;
-}
+    disable() {
+        if (global.display.get_n_monitors() != 2) {
+		    return;
+	    }
 
-function enable() {
-	if (LM.monitors.length != 2) {
-		return;
+	    let p = global.display.get_primary_monitor();
+	    let pg = global.display.get_monitor_geometry(p);
+
+	    Main.layoutManager.panelBox.x = pg.x;
+	    Main.layoutManager.panelBox.y = pg.y;
 	}
-
-	move_panel(LM.monitors[secondary_monitor_index()]);
-}
-
-function disable() {
-	if (LM.monitors.length != 2) {
-		return;
-	}
-
-	move_panel(LM.monitors[primary_monitor_index()]);
 }
